@@ -390,54 +390,9 @@ local function EMSVehicle(k)
     end)
 end
 
-RegisterNetEvent("ambulance:client:VehicleMenuHeader", function(data)
-    local Menu = {
-        {
-            header = Lang:t('menu.garage_title'),
-            isMenuHeader = true,
-            icon = "fas fa-warehouse",
-        }
-    }
-    for k,v in pairs(Config.VehicleTable) do
-        Menu[#Menu+1] = {
-            header = k:upper(),
-            txt = "Select a Heli to fly with",
-            icon = "fa-solid fa-shield",
-            params = {
-                event = "ambulance:client:veh-category-selected",
-                args = {
-                    category = k,
-                    location = data.spawn,
-                }
-            }
-        }
-    end
-    exports['qb-menu']:openMenu(Menu)
-end)
-   
-RegisterNetEvent("ambulance:client:VehicleMenuHeader", function(data)
-    local Menu = {
-        {
-            header = Lang:t('menu.garage_title'),
-            isMenuHeader = true,
-            icon = "fas fa-warehouse",
-        }
-    }
-    for k,v in pairs(Config.VehicleTable) do
-        Menu[#Menu+1] = {
-            header = k:upper(),
-            txt = "Select a Heli to fly with",
-            icon = "fa-solid fa-shield",
-            params = {
-                event = "ambulance:client:veh-category-selected",
-                args = {
-                    category = k,
-                    location = data.spawn,
-                }
-            }
-        }
-    end
-    exports['qb-menu']:openMenu(Menu)
+RegisterNetEvent("ambulance:client:VehicleMenuHeader", function (data)
+    MenuGarage(data.currentSelection)
+    currentGarage = data.currentSelection
 end)
 
 RegisterNetEvent("ambulance:client:TakeOutVehicle", function(data)
